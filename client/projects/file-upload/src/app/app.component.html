@@ -1,0 +1,51 @@
+<h1>Angular 9 Multiple File Upload Example</h1>
+
+<form [formGroup]="uploadForm" (ngSubmit)="submitForm()">
+
+  <div  class="form-group">
+
+  <label  for="name">Name</label>
+
+  <input  
+
+  formControlName="name"
+
+  id="name"  
+
+  type="text"  
+
+  class="form-control">
+
+  <div *ngIf="f.name.touched && f.name.invalid">
+
+  <div *ngIf="f.name.errors.required">Filename is required</div>
+
+  </div>
+
+  </div>
+
+  <div  class="form-group">
+
+  <label  for="file">File</label>
+
+  <input  
+
+  formControlName="file"
+
+  id="file"  
+
+  type="file"  
+
+  multiple
+
+  class="form-control"
+
+ (change)="onFileChange($event)">
+
+  <div *ngIf="f.file.touched && f.file.invalid">
+  <div *ngIf="f.file.errors.required">Choose a file</div>
+  </div>
+  </div>
+  <button type="submit">Upload</button>
+
+</form>

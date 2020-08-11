@@ -1,0 +1,124 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "file-upload": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/file-upload",
+      "sourceRoot": "projects/file-upload/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/file-upload",
+            "index": "projects/file-upload/src/index.html",
+            "main": "projects/file-upload/src/main.ts",
+            "polyfills": "projects/file-upload/src/polyfills.ts",
+            "tsConfig": "projects/file-upload/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/file-upload/src/favicon.ico",
+              "projects/file-upload/src/assets"
+            ],
+            "styles": [
+              "projects/file-upload/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/file-upload/src/environments/environment.ts",
+                  "with": "projects/file-upload/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "file-upload:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "file-upload:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "file-upload:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/file-upload/src/test.ts",
+            "polyfills": "projects/file-upload/src/polyfills.ts",
+            "tsConfig": "projects/file-upload/tsconfig.spec.json",
+            "karmaConfig": "projects/file-upload/karma.conf.js",
+            "assets": [
+              "projects/file-upload/src/favicon.ico",
+              "projects/file-upload/src/assets"
+            ],
+            "styles": [
+              "projects/file-upload/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/file-upload/tsconfig.app.json",
+              "projects/file-upload/tsconfig.spec.json",
+              "projects/file-upload/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/file-upload/e2e/protractor.conf.js",
+            "devServerTarget": "file-upload:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "file-upload:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "file-upload"
+}
